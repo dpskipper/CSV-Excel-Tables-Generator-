@@ -1,0 +1,31 @@
+'this program allows users to make columns of data and save it as a .csv file which will be opened in microsoft excel
+TextWindow.Title = "CSV Excel Database Generator"
+TextWindow.WriteLine("What is the name of this Data Base?")
+DBname= TextWindow.Read()
+'create folder
+File.CreateDirectory("C:\My Databases\" +DBname)
+'prompt user for folder name and then make it
+TextWindow.WriteLine("What is the title of your .csv file that will store the data about " + DBname +"?")
+DataTextName= TextWindow.Read()
+File.AppendContents("C:\My Databases\" + DBname + "\" + DataTextName + ".csv", DataTextName + " " + "DATABASE")
+'make columns and their names 
+TextWindow.WriteLine("What is the heading for the second column in your Database?")
+Column1 = TextWindow.Read()
+
+TextWindow.WriteLine("What is the heading for the second column in your Database?")
+Column2 = TextWindow.Read()
+'write all that data to a .csv file
+DB = File.AppendContents("C:\My Database\" + DBname + "\" + DataTextName + ".csv", Column1 + "," + Column2)
+'how many lines in the file
+TextWindow.WriteLine("How many lines of information to add?")
+NumDBLines = TextWindow.ReadNumber()
+'for loop that creats lines
+For i = 1 To NumDBLines
+  TextWindow.Write("What is the first item of date on line " + i + "?")
+  Item[i][Column1]=TextWindow.Read()
+  
+  TextWindow.Write("What is the second item of date on line " + i + "?")
+  Item[i][Column2]=TextWindow.Read()
+  'write all that to the file
+  DB= File.AppendContents("C:\My Database" + DBname + "\" + DataTextName + ".csv", Item[i][Column1] + "," + Item[i][Column2])
+ EndFor 
